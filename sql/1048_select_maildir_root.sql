@@ -1,20 +1,10 @@
 /*
- * @script     1048_select_maildir_root.sql
- *
- * @created    15th February 2025
- * @author     Datr.Tech Admin <admin@datr.tech>
- */
-/*
- * @script     _select_maildir_root.sql
+ * @script    1048_select_maildir_root.sql
  *
  * purpose    Select a single, active 'maildir' from 'email_domains'
  *
- * @created    15th February 2025
- * @author     Datr.Tech Admin <admin@datr.tech>
- *
- * notes:     Please be aware this .sql @script will be called on
- *            demand by '[PROJECT_ROOT]/test/bootstrap.sh', which, in turn,
- *            will be executed by Bashunit when running unit tests.
+ * @created   15th February 2025
+ * @author    Datr.Tech Admin <admin@datr.tech>
  */
 USE email_accounts;
 

@@ -14,7 +14,7 @@ CREATE TABLE email_domains (
   email_domain VARCHAR(100) NOT NULL,
   email_domain_path VARCHAR(200) NOT NULL,
   maildir_root VARCHAR(200) NOT NULL,
-  @created TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(),
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(),
   modified TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (email_domain_status_id) REFERENCES email_domain_statuses (email_domain_status_id) ON UPDATE CASCADE ON DELETE RESTRICT,
   CONSTRAINT unique_email_domain UNIQUE (email_domain)

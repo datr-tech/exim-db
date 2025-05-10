@@ -9,7 +9,7 @@
 .sql-lint.json
 
 CHANGELOG.md
-commitlint.config.js
+commitlint.config.mjs
 cspell.json
 LICENSE.txt
 package.json
@@ -21,3 +21,4 @@ README.md
 .husky
 
 node_modules/
+scripts

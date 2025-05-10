@@ -1,6 +1,11 @@
 services:
   exim-db:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        EXIM_DB_AUTHOR: ${EXIM_DB_AUTHOR}
+        EXIM_DB_SQL_PATH: ${EXIM_DB_SQL_PATH}
     container_name: exim-db
     environment:
       MARIADB_DATABASE: ${EXIM_DB_NAME}
@@ -9,16 +14,17 @@ services:
       MARIADB_USERNAME: ${EXIM_DB_USER}
     healthcheck:
       interval: 10s
-      start_period: 10s
+      start_period: 30s
       test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
-      timeout: 5
+      timeout: 5s
     networks:
       - exim-network
     ports:
       - ${EXIM_DB_PORT}:${EXIM_DB_PORT}
     restart:
       unless-stopped
-      # volumes:
+      #volumes:
+      #- ./sql/*.sh:/docker-entrypoint-initdb.d
       # - ./data:/var/lib/mysql
 networks:
   exim-network:

@@ -1,7 +1,9 @@
-FROM mariadb:${EXIM_DB_MARIADB_VERSION}
+FROM mariadb:lts-noble
 
-LABEL maintainer=${EXIM_DB_MAINTAINER}
+ARG EXIM_DB_AUTHOR
+ARG EXIM_DB_SQL_PATH
 
-COPY ${EXIM_DB_SQL_PATH} docker-entrypoint-initdb.d
+LABEL authors="${EXIM_DB_AUTHOR}"
+COPY ${EXIM_DB_SQL_PATH}/*.sql /docker-entrypoint-initdb.d
 
 CMD ["mariadbd"]

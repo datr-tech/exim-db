@@ -20,7 +20,8 @@ SELECT
   ed.email_domain AS email_domain,
   CONCAT(ed.email_domain_path, '/', u.ref) AS mailbox,
   eds.email_domain_status AS email_domain_status,
-  u.password AS password u.uid AS uid,
+  u.password AS password,
+  u.uid AS uid,
   u.gid AS gid
 FROM
   users AS u

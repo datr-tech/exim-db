@@ -4,10 +4,15 @@
  * @created    15th February 2025
  * @author     Datr.Tech Admin <admin@datr.tech>
  */
-DROP USER IF EXISTS dovecot_read_only_user @localhost;
+SET @user_name=(SELECT user_env_var_value FROM user_env_vars WHERE user_env_var_name='EXIM_DB_USER_DOVECOT_NAME');
+SET @user_pass=(SELECT user_env_var_value FROM user_env_vars WHERE user_env_var_name='EXIM_DB_USER_DOVECOT_PASS');
 
-CREATE USER dovecot_read_only_user @localhost IDENTIFIED BY @user_dovecot_pass;
+SHOW USER VARIABLES;
+
+DROP USER IF EXISTS @user_name@localhost;
+
+CREATE USER @user_name@locahost IDENTIFIED BY @user_pass;
 
 GRANT
 SELECT
-  ON email_accounts.user_name_domains TO dovecot_read_only_user @localhost;
+  ON email_accounts.user_name_domains TO @user_name@localhost;

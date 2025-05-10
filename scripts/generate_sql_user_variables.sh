@@ -9,17 +9,17 @@ IFS=$'\n\t'
 # Script:  generate_sql_user_variables.sh                           #
 #                                                                   #
 #                                                                   #
-# Purpose: Generate the '0000_define_user_variables.sql' file       #
-#          the ROOT/sql dir, and do so based upon the following     #
-#          template:                                                #
+# Purpose: Generate the '0001_insert_user_env_vars.sql' file        #
+#          (within <PKG_ROOT>/sql) and do so based upon the         #
+#          following template:                                      #
 #                                                                   #
-#          'ROOT/sql/0000_define_user_variables.sql.TEMPLATE'       #
+#          <PKG_ROOT>/sql/0001_insert_user_env_vars.sql.TEMPLATE    #
 #                                                                   #
 #          The generated file will be populated with user vars      #
-#          from 'ROOT/.env', assuming that the env vars identified  #
-#          within the 'required_env_vars' array (see section 1.4    #
-#          below) have been updated and that they are not           #
-#          associated with the default empty values.                #
+#          from <PKG_ROOT>/.env, assuming that the env vars         #
+#          identified  within the 'required_env_vars' array         #
+#          (see section 1.4 below) have been updated and that       #
+#          they are not associated with the default empty values.   #
 #                                                                   #
 #                                                                   #
 # Date:    10th May 2025                                            #
@@ -91,8 +91,9 @@ IFS=$'\n\t'
 
 declare -r current_file_name="generate_sql_user_variables.sh"
 declare -r dot_env_file_name=".env"
+declare -r env_var_template_suffix="_ENV_VAR"
 declare -r scripts_dir_name="scripts"
-declare -r sql_destination_file_name="0000_define_user_variables.sql"
+declare -r sql_destination_file_name="0001_insert_user_env_vars.sql"
 declare -r sql_dir_name="sql"
 declare -r sql_template_file_name="${sql_destination_file_name}.TEMPLATE"
 
@@ -289,7 +290,7 @@ template=$(cat "${sql_template_file_path}")
 
 parsed_template="${template}"
 
-parsed_template=$(echo "${parsed_template}" | grep -v "*")
+parsed_template=$(echo "${parsed_template}" | grep -v "\*")
 parsed_template="${parsed_template//\$\{/}"
 parsed_template="${parsed_template//\}/}"
 
@@ -302,7 +303,7 @@ parsed_template="${parsed_template//\}/}"
 populated_template="${parsed_template}"
 
 for required_env_var in "${required_env_vars[@]}"; do
-  populated_template="${populated_template/${required_env_var}/${!required_env_var}}"
+	populated_template="${populated_template/${required_env_var}${env_var_template_suffix}/${!required_env_var}}"
 done
 
 #####################################################################
@@ -311,10 +312,10 @@ done
 #                                                                   #
 #####################################################################
 
-#shellcheck source=/sql/0000_define_user_variables.sql
+#shellcheck source=/sql/0001_insert_user_env_vars.sql
 cat << EOF > "${sql_destination_file_path}"
 /*
- * @script     0000_define_user_variables.sql
+ * @script     0001_insert_user_env_vars.sql
  *
  * @created    ${formatted_date}
  * @author     Datr.Tech Admin <admin@datr.tech>

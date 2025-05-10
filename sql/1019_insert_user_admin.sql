@@ -45,5 +45,5 @@ VALUES
     'admin',
     2000,
     8,
-    MD5(@user_admin_pass)
+    (SELECT MD5(user_env_var_value) FROM user_env_vars WHERE user_env_var_name='EXIM_DB_USER_ADMIN_PASS')
   );

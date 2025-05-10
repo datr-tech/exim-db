@@ -4,10 +4,13 @@
  * @created    15th February 2025
  * @author     Datr.Tech Admin <admin@datr.tech>
  */
-DROP USER IF EXISTS @user_exim_name @localhost;
+SET @user_name=(SELECT CONCAT(user_env_var_value, "@localhost") FROM user_env_vars WHERE user_env_var_name='EXIM_DB_USER_EXIM_MTA_NAME');
+SET @user_pass=(SELECT user_env_var_value FROM user_env_vars WHERE user_env_var_name='EXIM_DB_USER_EXIM_MTA_PASS');
 
-CREATE USER @user_exim_name @localhost IDENTIFIED BY @user_exim_pass;
+DROP USER IF EXISTS @user_name;
+
+CREATE USER @user_name IDENTIFIED BY @user_pass;
 
 GRANT
-SELECT
-  ON email_accounts.user_name_domains TO @user_exim_name @localhost;
+SELECT                                                                                
+  ON email_accounts.user_name_domains TO @user_name;
