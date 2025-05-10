@@ -1,0 +1,46 @@
+{
+  "ignorePaths": [".git", ".github", "node_modules"],
+  "language": "en-gb",
+  "languageSettings": [
+    {
+      "languageId": "bash, javascript, json, sql"
+    }
+  ],
+  "version": "0.2",
+  "words": [
+    "Bashunit",
+    "BUILDKIT",
+    "datr",
+    "dvcm",
+    "EHLO",
+    "emta",
+    "ESMTP",
+    "EXIM",
+    "gnutls",
+    "healthcheck",
+    "hhbg",
+    "hostmaster",
+    "joestrachan",
+    "joealdersonstrachan",
+    "innodb",
+    "initdb",
+    "lindex",
+    "maildir",
+    "Nlcm",
+    "noninteractive",
+    "nslookup",
+    "NXDOMAIN",
+    "RCPT",
+    "shellcheck",
+    "STARTTLS",
+    "SASL",
+    "SNDR",
+    "swaks",
+    "TEARDOWN",
+    "TLSC",
+    "Tmtub",
+    "tuplen",
+    "VARS",
+    "vars"
+  ]
+}

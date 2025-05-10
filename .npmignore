@@ -1,14 +1,19 @@
-.dockerignore
 .editorconfig
+.gitignore
 .mailmap
+.npmignore
+.prettierignore
+.prettierrc.json
+.shellcheckrc
+.sql-lint.json
 
 CHANGELOG.md
-commitlint.config.mjs
-compose.yaml
+commitlint.config.js
 cspell.json
-README.md
+LICENSE.txt
 
-.github/
-.husky/
+.git
+.github
+.husky
 
-test/
+node_modules/

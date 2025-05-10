@@ -1,16 +1,22 @@
 /*
- * script     1024_insert_user_name_alias_ftp.sql
+ * @script     1024_insert_user_name_alias_ftp.sql
  *
- * date       15th February 2025
- * author     J.A.Strachan
+ * @created    15th February 2025
+ * @author     Datr.Tech Admin <admin@datr.tech>
  */
 USE email_accounts;
 
-INSERT INTO user_names (
-	user_name_type_id ,
-	user_name					
-)
-VALUES (
-	( SELECT user_name_type_id FROM user_name_types WHERE user_name_type = 'alias' ),
-	'ftp'
-);
+INSERT INTO
+  user_names (user_name_type_id, user_name)
+VALUES
+  (
+    (
+      SELECT
+        user_name_type_id
+      FROM
+        user_name_types
+      WHERE
+        user_name_type = 'alias'
+    ),
+    'ftp'
+  );

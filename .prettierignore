@@ -1,0 +1,9 @@
+.mailmap
+
+CHANGELOG.md
+LICENSE.txt
+package-lock.json
+
+.git/
+.husky/
+node_modules/

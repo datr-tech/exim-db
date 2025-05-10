@@ -7,13 +7,7 @@
 .pid
 .out
 .rds
-
-.env.dev
-Dockerfile.wp
 npm-debug.log
 
 .idea/
-
-coverage
-lib/
 node_modules/

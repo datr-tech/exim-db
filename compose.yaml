@@ -1,0 +1,24 @@
+services:
+  exim-db:
+    build: .
+    container_name: exim-db
+    environment:
+      MARIADB_DATABASE: ${EXIM_DB_NAME}
+      MARIADB_ROOT_PASSWORD: ${EXIM_DB_ROOT_PASS}
+      MARIADB_ROOT_USER: ${EXIM_DB_ROOT_USER}
+      MARIADB_USERNAME: ${EXIM_DB_USER}
+    healthcheck:
+      interval: 10s
+      start_period: 10s
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      timeout: 5
+    networks:
+      - exim-network
+    ports:
+      - ${EXIM_DB_PORT}:${EXIM_DB_PORT}
+    restart: unless-stopped
+      # volumes:
+      # - ./data:/var/lib/mysql
+networks:
+  exim-network:
+    driver: bridge

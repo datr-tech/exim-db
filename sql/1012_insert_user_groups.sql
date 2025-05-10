@@ -1,9 +1,12 @@
 /*
- * script     1012_insert_user_groups.sql
+ * @script     1012_insert_user_groups.sql
  *
- * date       15th February 2025
- * author     J.A.Strachan
+ * @created    15th February 2025
+ * @author     Datr.Tech Admin <admin@datr.tech>
  */
 USE email_accounts;
 
-INSERT INTO user_groups (user_group) VALUES ('default');
+INSERT INTO
+  user_groups (user_group)
+VALUES
+  ('default');
