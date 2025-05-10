@@ -157,7 +157,6 @@ readonly formatted_date
 timestamp=$(date +%s)
 readonly timestamp
 
-
 #####################################################################
 #####################################################################
 #                                                                   #
@@ -183,20 +182,17 @@ for required_dependency in "${current_file_required_dependencies[@]}"; do
   fi
 done
 
-
 #####################################################################
 #                                                                   #
 # 2.2  Check the dot env file path                                  #
 #                                                                   #
 #####################################################################
 
-echo "${dot_env_file_path}"
-
+#shellcheck source=/.env
 if [ ! -s "${dot_env_file_path}" ]; then
-  echo "dot_env_file_path: invalid"
+  echo "dot_env_file_path: invalid: has .env.TEMPLATE been updated and copied to .env?"
   exit 1
 fi
-
 
 #####################################################################
 #                                                                   #
@@ -204,6 +200,7 @@ fi
 #                                                                   #
 #####################################################################
 
+#shellcheck source=/sql
 if [ ! -d "${sql_dir_path}" ]; then
   echo "sql_dir_path: invalid"
   exit 1
@@ -215,6 +212,7 @@ fi
 #                                                                   #
 #####################################################################
 
+#shellcheck source=/sql/0000_define_user_variables.sql.TEMPLATE
 if [ ! -f "${sql_template_file_path}" ]; then
   echo "sql_template_file_path: not exists"
 fi
@@ -226,7 +224,7 @@ fi
 #####################################################################
 
 if [ -f "${sql_destination_file_path}" ]; then
-	mv "${sql_destination_file_path}" "${sql_destination_file_path}.${timestamp}.bak"
+  mv "${sql_destination_file_path}" "${sql_destination_file_path}.${timestamp}.bak"
 fi
 
 #####################################################################
@@ -245,8 +243,8 @@ fi
 #                                                                   #
 #####################################################################
 
-# shellcheck source=.env
-set -a            
+set -a
+# shellcheck source=/.env
 source "${dot_env_file_path}"
 set +a
 
@@ -304,7 +302,7 @@ parsed_template="${parsed_template//\}/}"
 populated_template="${parsed_template}"
 
 for required_env_var in "${required_env_vars[@]}"; do
-	populated_template="${populated_template/${required_env_var}/${!required_env_var}}"
+  populated_template="${populated_template/${required_env_var}/${!required_env_var}}"
 done
 
 #####################################################################
