@@ -1,6 +1,7 @@
 .csv
 .dat
 .DS_Store
+.env
 .err
 .gz
 .log

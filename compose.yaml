@@ -16,7 +16,8 @@ services:
       - exim-network
     ports:
       - ${EXIM_DB_PORT}:${EXIM_DB_PORT}
-    restart: unless-stopped
+    restart:
+      unless-stopped
       # volumes:
       # - ./data:/var/lib/mysql
 networks:
