@@ -19,7 +19,7 @@
     "sql"
   ],
   "license": "MIT",
-  "author": "admin <admin@datr.tech>",
+  "author": "datr.tech admin <admin@datr.tech>",
   "engines": {
     "node": ">=20.0.9",
     "npm": ">=10.1.0"
@@ -28,7 +28,9 @@
     "changelog": "npx auto-changelog",
     "changelog:add": "git add ./CHANGELOG.md",
     "changelog:commit": "git commit -m 'ci: update changelog' --no-verify",
-    "clean": "npx rimraf ./sql/0001_insert_user_env_vars.sql ./sql/*.bak",
+    "clean": "npm-run-all clean:sql:bak clean:sql:exim",
+    "clean:sql:bak": "npx rimraf ./sql/*.bak",
+    "clean:sql:exim": "npx rimraf ./sql/exim_db.sql",
     "commit-msg": "npx commitlint --edit",
     "docker:up": "docker compose up",
     "docker:down": "docker compose down",
@@ -54,7 +56,7 @@
     "spell": "npx cspell .",
     "start": "npm run docker:up",
     "stop": "npm-run-all docker:down docker:rmi",
-    "sql:generate": "./scripts/generate_sql_user_variables.sh",
+    "sql:generate": "./scripts/generate_sql_with_env_vars.sh",
     "version": "npm-run-all changelog"
   },
   "devDependencies": {

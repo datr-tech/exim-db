@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
       args:
         EXIM_DB_AUTHOR: ${EXIM_DB_AUTHOR}
+        EXIM_DB_SQL_FILE: ${EXIM_DB_SQL_FILE}
         EXIM_DB_SQL_PATH: ${EXIM_DB_SQL_PATH}
     container_name: exim-db
     environment:
