@@ -62,7 +62,7 @@ IFS=$'\n\t'
 #                                                                   #
 # 5.1  Read the encoded contents of IN_FILE_PATH                    #
 # 5.2  Check the encoded contents                                   #
-# 5.3  Decoded the contents of IN_FILE_PATH                         #
+# 5.3  Decode the contents of IN_FILE_PATH                          #
 # 5.4  Check the decoded contents                                   #
 #                                                                   #
 #                                                                   #
@@ -300,7 +300,7 @@ fi
 
 #####################################################################
 #                                                                   #
-# 5.3  Decoded the contents of IN_FILE_PATH                         #
+# 5.3  Decode the contents of IN_FILE_PATH                          #
 #                                                                   #
 #####################################################################
 
