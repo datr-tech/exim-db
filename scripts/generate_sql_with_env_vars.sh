@@ -69,8 +69,10 @@ IFS=$'\n\t'
 # 6. ADD ENV VARS TO THE DECODED FILE CONTENTS                      #
 # --------------------------------------------                      #
 #                                                                   #
-# 6.1  Create a SQL user variable for each env var                  #
-# 6.2  Combine the SQL user variables and the decoded file contents #
+# 6.1  Create a 'header' with a SQL user variable for each env var  #
+# 6.2  Add a 'USE DATABASE' statement                               #
+# 6.3  Combine the SQL user variables and the decoded file contents #
+# 6.4  Add read only users                                          #
 #                                                                   #
 #                                                                   #
 # 7. WRITE TO OUT_FILE_PATH                                         #
@@ -330,23 +332,53 @@ fi
 
 #####################################################################
 #                                                                   #
-# 6.1  Create a SQL user variable for each env var                  #
+# 6.1  Create a 'header' with a SQL user variable for each env var  #
 #                                                                   #
 #####################################################################
 
-sql_user_variables=""
+out_file_header=""
 
 for required_env_var in "${REQUIRED_ENV_VARS[@]}"; do
-  sql_user_variables="${sql_user_variables}SET @${required_env_var}='${!required_env_var}';\n"
+  out_file_header="${out_file_header}SET @${required_env_var}='${!required_env_var}';\n"
 done
 
 #####################################################################
 #                                                                   #
-# 6.2  Combine the SQL user variables and the decoded file contents #
+# 6.2  Add a 'USE DATABASE' statement                               #
 #                                                                   #
 #####################################################################
 
-out_file_contents="${sql_user_variables}${in_file_contents_decoded}"
+exim_db_name="${EXIM_DB_NAME:-""}"
+
+if [ -z "${exim_db_name}" ]; then
+  echo "exim_db_name: invalid" >&2
+  exit 1
+fi
+
+out_file_header="${out_file_header}\nUSE ${exim_db_name};\n"
+
+#####################################################################
+#                                                                   #
+# 6.3  Combine the SQL user variables and the decoded file contents #
+#                                                                   #
+#####################################################################
+
+out_file_contents="${out_file_header}${in_file_contents_decoded}\n"
+
+#####################################################################
+#                                                                   #
+# 6.4  Add read only users                                          #
+#                                                                   #
+#####################################################################
+
+out_file_contents="${out_file_contents}DROP USER IF EXISTS '${EXIM_DB_USER_DOVECOT_NAME}@localhost';\n"
+out_file_contents="${out_file_contents}CREATE USER '${EXIM_DB_USER_DOVECOT_NAME}@localhost' IDENTIFIED BY '${EXIM_DB_USER_DOVECOT_PASS}';\n"
+out_file_contents="${out_file_contents}GRANT SELECT ON ${exim_db_name}.user_name_domains TO '${EXIM_DB_USER_DOVECOT_NAME}@localhost';\n"
+
+out_file_contents="${out_file_contents}DROP USER IF EXISTS '${EXIM_DB_USER_EXIM_MTA_NAME}@localhost';\n"
+out_file_contents="${out_file_contents}CREATE USER '${EXIM_DB_USER_EXIM_MTA_NAME}@localhost' IDENTIFIED BY '${EXIM_DB_USER_EXIM_MTA_PASS}';\n"
+out_file_contents="${out_file_contents}GRANT SELECT ON ${exim_db_name}.user_name_domains TO '${EXIM_DB_USER_EXIM_MTA_NAME}@localhost';\n"
+
 
 #####################################################################
 #####################################################################
