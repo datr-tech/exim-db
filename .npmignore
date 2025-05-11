@@ -1,3 +1,18 @@
+#####################################################################
+#                                                                   #
+# Script:  .npmignore                                               #
+#                                                                   #
+# Purpose: A list of files and dirs to be ignored by NPM.           #
+#                                                                   #
+# Date:    11th May 2025                                            #
+#                                                                   #
+# Author:  datr.tech admin <admin@datr.tech>                        #
+#                                                                   #
+#####################################################################
+
+#
+# Hidden files to be ignored
+#
 .editorconfig
 .gitignore
 .mailmap
@@ -7,13 +22,22 @@
 .shellcheckrc
 .sql-lint.json
 
+#
+# Standard files to be ignored
+#
 CHANGELOG.md
 commitlint.config.js
 cspell.json
 LICENSE.txt
 
+#
+# Hidden dirs to be ignored
+#
 .git
 .github
 .husky
 
+#
+# Standard dirs to be ignored
+#
 node_modules/

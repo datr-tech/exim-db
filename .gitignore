@@ -1,5 +1,18 @@
-.csv
-.dat
+#####################################################################
+#                                                                   #
+# Script:  .gitignore                                               #
+#                                                                   #
+# Purpose: A list of files and dirs to be ignored by git.           #
+#                                                                   #
+# Date:    11th May 2025                                            #
+#                                                                   #
+# Author:  datr.tech admin <admin@datr.tech>                        #
+#                                                                   #
+#####################################################################
+
+#
+# File extensions to be ignored
+#
 .DS_Store
 .env
 .err
@@ -8,7 +21,9 @@
 .pid
 .out
 .rds
-npm-debug.log
 
+#
+# Dirs to be ignored
+#
 .idea/
 node_modules/
