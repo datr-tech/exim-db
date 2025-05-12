@@ -13,14 +13,15 @@
 #
 # File extensions to be ignored
 #
+.bak
 .DS_Store
-.env
 .err
 .gz
 .log
 .pid
 .out
 .rds
+.swp
 
 #
 # Files to be ignored
@@ -28,6 +29,10 @@
 sql/exim_db.sql
 
 #
+# Hidden files to be ignored
+#
+.env
+
 # Dirs to be ignored
 #
 .idea/

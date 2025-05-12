@@ -19,12 +19,12 @@ services:
         EXIM_DB_AUTHOR: ${EXIM_DB_AUTHOR}
         EXIM_DB_SQL_FILE: ${EXIM_DB_SQL_FILE}
         EXIM_DB_SQL_PATH: ${EXIM_DB_SQL_PATH}
-    container_name: exim-db
+    container_name: ${EXIM_DB_CONTAINER}
     environment:
       MARIADB_DATABASE: ${EXIM_DB_NAME}
-      MARIADB_ROOT_PASSWORD: ${EXIM_DB_ROOT_PASS}
-      MARIADB_ROOT_USER: ${EXIM_DB_ROOT_USER}
-      MARIADB_USERNAME: ${EXIM_DB_USER}
+      MARIADB_ROOT_PASSWORD: ${EXIM_DB_USER_ROOT_PASS}
+      MARIADB_ROOT_USER: ${EXIM_DB_USER_ROOT}
+      MARIADB_USERNAME: ${EXIM_DB_USER_STD}
     healthcheck:
       interval: 10s
       start_period: 30s
@@ -38,15 +38,13 @@ services:
     volumes:
       - type: volume
         source: ${EXIM_DB_SOCKET_VOLUME}
-        target: /run/mysqld
-      # - ./sql/*.sh:/docker-entrypoint-initdb.d
-      # - ./data:/var/lib/mysql
+        target: ${EXIM_DB_SOCKET_VOLUME_TARGET}
 networks:
   exim-network:
     attachable: true
     driver: bridge
-    name: '${EXIM_NETWORK}'
+    name: ${EXIM_NETWORK}
 volumes:
   exim-db-socket-volume:
     driver: local
-    name: '${EXIM_DB_SOCKET_VOLUME}'
+    name: ${EXIM_DB_SOCKET_VOLUME}

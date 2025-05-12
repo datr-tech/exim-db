@@ -67,6 +67,7 @@
     "postformat:write": "npm run postformat",
     "postinstall": "npm-run-all husky:init template:env:cp",
     "postlint": "npm run clean",
+    "poststop": "npm run clean",
     "spell": "npx cspell .",
     "start": "npm run docker:up",
     "stop": "npm-run-all docker:down docker:rmi",
