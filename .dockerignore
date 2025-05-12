@@ -35,6 +35,11 @@ package-lock.json
 README.md
 
 #
+# Temp (dynamically generated) SQL files to be ignored
+#
+sql/exim_db.sql
+
+#
 # Hidden dirs to be ignored
 #
 .git

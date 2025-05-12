@@ -23,6 +23,11 @@
 .rds
 
 #
+# Files to be ignored
+#
+sql/exim_db.sql
+
+#
 # Dirs to be ignored
 #
 .idea/
