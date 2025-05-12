@@ -55,6 +55,7 @@
     "precommit": "npm-run-all clean format lint spell",
     "preformat": "npm run decode",
     "prepare": "husky",
+    "prepush": "npm run lint",
     "preversion": "npm-run-all clean format lint spell",
     "prestart": "npm-run-all sql:generate",
     "postlint": "npm run clean",
