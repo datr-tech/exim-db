@@ -194,6 +194,6 @@ sed -E 's/\".+\"/\"\"/g' "${IN_FILE_PATH}" > "${OUT_FILE_PATH}"
 sed -E -i 's/=[0-9]+/=0/g' "${OUT_FILE_PATH}"
 
 #
-# Convert (in place) env vars bool values to the keyword 'BOOL_VALUE'
+# Convert (in place) env vars bool values to the key phrase '<BOOL_VALUE>'
 #
-sed -E -i 's/=(true|false)/=BOOL_VALUE/g' "${OUT_FILE_PATH}"
+sed -E -i "s/=(true|false)/='<BOOL_VALUE>'/g" "${OUT_FILE_PATH}"
