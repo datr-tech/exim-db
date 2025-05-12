@@ -371,13 +371,13 @@ out_file_contents="${out_file_header}${in_file_contents_decoded}\n"
 #                                                                   #
 #####################################################################
 
-out_file_contents="${out_file_contents}DROP USER IF EXISTS '${EXIM_DB_USER_DOVECOT_NAME}@localhost';\n"
-out_file_contents="${out_file_contents}CREATE USER '${EXIM_DB_USER_DOVECOT_NAME}@localhost' IDENTIFIED BY '${EXIM_DB_USER_DOVECOT_PASS}';\n"
-out_file_contents="${out_file_contents}GRANT SELECT ON ${exim_db_name}.user_name_domains TO '${EXIM_DB_USER_DOVECOT_NAME}@localhost';\n"
+out_file_contents="${out_file_contents}DROP USER IF EXISTS '${EXIM_DB_USER_DOVECOT_NAME}'@'localhost';\n"
+out_file_contents="${out_file_contents}CREATE USER '${EXIM_DB_USER_DOVECOT_NAME}'@'localhost' IDENTIFIED BY '${EXIM_DB_USER_DOVECOT_PASS}';\n"
+out_file_contents="${out_file_contents}GRANT SELECT ON ${exim_db_name}.user_name_domains TO '${EXIM_DB_USER_DOVECOT_NAME}'@'localhost';\n"
 
-out_file_contents="${out_file_contents}DROP USER IF EXISTS '${EXIM_DB_USER_EXIM_MTA_NAME}@localhost';\n"
-out_file_contents="${out_file_contents}CREATE USER '${EXIM_DB_USER_EXIM_MTA_NAME}@localhost' IDENTIFIED BY '${EXIM_DB_USER_EXIM_MTA_PASS}';\n"
-out_file_contents="${out_file_contents}GRANT SELECT ON ${exim_db_name}.user_name_domains TO '${EXIM_DB_USER_EXIM_MTA_NAME}@localhost';\n"
+out_file_contents="${out_file_contents}DROP USER IF EXISTS '${EXIM_DB_USER_EXIM_MTA_NAME}'@'localhost';\n"
+out_file_contents="${out_file_contents}CREATE USER '${EXIM_DB_USER_EXIM_MTA_NAME}'@'localhost' IDENTIFIED BY '${EXIM_DB_USER_EXIM_MTA_PASS}';\n"
+out_file_contents="${out_file_contents}GRANT SELECT ON ${exim_db_name}.user_name_domains TO '${EXIM_DB_USER_EXIM_MTA_NAME}'@'localhost';\n"
 
 #####################################################################
 #####################################################################

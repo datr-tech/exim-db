@@ -34,8 +34,19 @@ services:
       - ${EXIM_NETWORK}
     ports:
       - ${EXIM_DB_PORT}:${EXIM_DB_PORT}
-    restart:
-      unless-stopped
-      #volumes:
-      #- ./sql/*.sh:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: ${EXIM_DB_SOCKET_VOLUME}
+        target: /run/mysqld
+      # - ./sql/*.sh:/docker-entrypoint-initdb.d
       # - ./data:/var/lib/mysql
+networks:
+  exim-network:
+    attachable: true
+    driver: bridge
+    name: '${EXIM_NETWORK}'
+volumes:
+  exim-db-socket-volume:
+    driver: local
+    name: '${EXIM_DB_SOCKET_VOLUME}'

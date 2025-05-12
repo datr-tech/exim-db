@@ -19,6 +19,7 @@
     "lindex",
     "maildir",
     "mariadbd",
+    "mysqld",
     "noninteractive",
     "nslookup",
     "NXDOMAIN",
