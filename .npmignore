@@ -31,11 +31,6 @@ cspell.json
 LICENSE.txt
 
 #
-# Temp (dynamically generated) SQL files to be ignored
-#
-sql/exim_db.sql
-
-#
 # Hidden dirs to be ignored
 #
 .git
@@ -46,3 +41,9 @@ sql/exim_db.sql
 # Standard dirs to be ignored
 #
 node_modules/
+
+#
+# SQL files to be ignored
+#
+sql/exim_db.sql
+sql/exim_db.sql.b64

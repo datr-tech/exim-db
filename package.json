@@ -54,7 +54,7 @@
     "preformat": "npm run decode",
     "prepare": "husky",
     "preversion": "npm-run-all clean format lint spell",
-    "prestart": "npm-run-all clean sql:generate",
+    "prestart": "npm-run-all sql:generate",
     "postlint": "npm run clean",
     "spell": "npx cspell .",
     "start": "npm run docker:up",

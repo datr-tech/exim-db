@@ -35,9 +35,9 @@ package-lock.json
 README.md
 
 #
-# Temp (dynamically generated) SQL files to be ignored
+# Base64 SQL file to be ignored
 #
-sql/exim_db.sql
+sql/exim_db.sql.b64
 
 #
 # Hidden dirs to be ignored
