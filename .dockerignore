@@ -50,4 +50,4 @@ sql/exim_db.sql.b64
 # Standard dirs to be ignored
 #
 node_modules/
-scripts
+scripts/
