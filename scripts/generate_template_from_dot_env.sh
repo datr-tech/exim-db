@@ -184,3 +184,5 @@ fi
 #####################################################################
 
 sed -E 's/\".+\"/\"\"/g' "${IN_FILE_PATH}" > "${OUT_FILE_PATH}"
+sed -E -i 's/=[0-9]+/=0/g' "${OUT_FILE_PATH}"
+sed -E -i 's/=(true|false)/=BOOL_VALUE/g' "${OUT_FILE_PATH}"
