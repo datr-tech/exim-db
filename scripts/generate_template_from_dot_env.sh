@@ -184,16 +184,16 @@ fi
 #####################################################################
 
 #
-# Convert IN_FILE env vars string values to ""
+# Convert IN_FILE env vars string values to "" (within the OUT_FILE)
 #
 sed -E 's/\".+\"/\"\"/g' "${IN_FILE_PATH}" > "${OUT_FILE_PATH}"
 
 #
-# Convert IN_FILE env vars numeric values to 0
+# Convert (in place) env vars numeric values to 0
 #
 sed -E -i 's/=[0-9]+/=0/g' "${OUT_FILE_PATH}"
 
 #
-# Convert IN_FILE env vars bool values to the keyword 'BOOL_VALUE'
+# Convert (in place) env vars bool values to the keyword 'BOOL_VALUE'
 #
 sed -E -i 's/=(true|false)/=BOOL_VALUE/g' "${OUT_FILE_PATH}"
